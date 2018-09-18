@@ -16,20 +16,19 @@ namespace TLAP_3_4_Selftest
             var code = "QWERTYUIOPLKJHGFDSAZXCVBNM";
             var ciphertext = "Hei på deg";
             MainEncrypt(alphabet, code, ciphertext);
-            BackToPlainText(alphabet, code, ciphertext);
+            //BackToPlainText(alphabet, code, ciphertext);
+           
             Console.WriteLine(ciphertext);
 
-
         }
 
-        static void MainEncrypt(string alphabet, string code, string ciphertext)
+        public static string MainEncrypt(string alphabet, string code, string ciphertext)
         {
             var codeToArray = code.ToCharArray();
             var alphabetToArray = alphabet.ToCharArray();
             var outputText = string.Empty;
             var characters = ciphertext;
             var randomAlphaChar = RandomCharacter();
-
 
             foreach (var i in ciphertext.ToUpper())
             {
@@ -39,37 +38,58 @@ namespace TLAP_3_4_Selftest
                     outputText += alphabetToArray[Array.IndexOf(codeToArray, i)];
                 }
                 else outputText += randomAlphaChar;
-            }
-            Console.WriteLine(outputText);
 
-        }
-
-        static void BackToPlainText(string alphabet, string code, string ciphertext)
-        {
-            var codeToArray = code.ToCharArray();
-            var alphabetToArray = alphabet.ToCharArray();
-            var characters = ciphertext;
-            var outputText = string.Empty;
-            var randomAlphaChar = RandomCharacter();
-
-            foreach (var i in ciphertext.ToUpper())
-            {
-                //var randomAlpha = Random.Next(alphabetToArray.Length, i);
-                if (alphabetToArray.Contains(i))
+                for (int index = 0; index < characters.Length; index++)
                 {
-                    outputText += alphabetToArray[Array.IndexOf(codeToArray, i)];
-
+                    outputText += RandomChar(characters[index], alphabet, code);
                 }
-                else outputText += randomAlphaChar;
-            }
-            Console.WriteLine(characters);
+
+            }     
+            return outputText;
             Console.WriteLine(outputText);
 
         }
+
+        private static char RandomChar(string alphabet, string code, char c )
+        {
+            for (int i = 0; i < alphabet.Length; i++)
+            {
+                if (alphabet[i] == char.ToUpper(c))
+                {
+                    return code[i];
+                }
+            }
+            return c;
+        }
+
+        //static void BackToPlainText(string alphabet, string code, string ciphertext)
+        //{
+        //    var codeToArray = code.ToCharArray();
+        //    var alphabetToArray = alphabet.ToCharArray();
+        //    var characters = ciphertext;
+        //    var outputText = string.Empty;
+        //    var randomAlphaChar = RandomCharacter();
+
+        //    foreach (var i in ciphertext.ToUpper())
+        //    {
+        //        //var randomAlpha = Random.Next(alphabetToArray.Length, i);
+        //        if (alphabetToArray.Contains(i))
+        //        {
+        //            outputText += alphabetToArray[Array.IndexOf(codeToArray, i)];
+
+        //        }
+        //        else outputText += randomAlphaChar;
+        //    }
+        //    Console.WriteLine(characters);
+        //    Console.WriteLine(outputText);
+
+        //}
 
         private static char RandomCharacter()
         {
-            return (char) Random.Next('A', 'Z');
+            return (char)Random.Next('A', 'Z');
         }
+
+
     }
 }
