@@ -28,16 +28,17 @@ namespace TLAP_3_4_Selftest
             var alphabetToArray = alphabet.ToCharArray();
             var outputText = string.Empty;
             var characters = ciphertext;
+            var randomAlphaChar = RandomCharacter();
 
 
             foreach (var i in ciphertext.ToUpper())
             {
-                var randomAlpha = Random.Next(alphabetToArray.Length, i);
+                //var randomAlpha = Random.Next(alphabetToArray.Length, i);
                 if (alphabetToArray.Contains(i))
                 {
                     outputText += alphabetToArray[Array.IndexOf(codeToArray, i)];
                 }
-                else outputText += RandomNess();
+                else outputText += randomAlphaChar;
             }
             Console.WriteLine(outputText);
 
@@ -49,23 +50,24 @@ namespace TLAP_3_4_Selftest
             var alphabetToArray = alphabet.ToCharArray();
             var characters = ciphertext;
             var outputText = string.Empty;
+            var randomAlphaChar = RandomCharacter();
 
             foreach (var i in ciphertext.ToUpper())
             {
-                var randomAlpha = Random.Next(alphabetToArray.Length, i);
+                //var randomAlpha = Random.Next(alphabetToArray.Length, i);
                 if (alphabetToArray.Contains(i))
                 {
                     outputText += alphabetToArray[Array.IndexOf(codeToArray, i)];
 
                 }
-                else outputText += RandomNess();
+                else outputText += randomAlphaChar;
             }
             Console.WriteLine(characters);
             Console.WriteLine(outputText);
 
         }
 
-        private static char RandomNess()
+        private static char RandomCharacter()
         {
             return (char) Random.Next('A', 'Z');
         }
