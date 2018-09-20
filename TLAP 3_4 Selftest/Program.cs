@@ -17,12 +17,11 @@ namespace TLAP_3_4_Selftest
             var ciphertext = "Hei på deg";
             MainEncrypt(alphabet, code, ciphertext);
             //BackToPlainText(alphabet, code, ciphertext);
-           
             Console.WriteLine(ciphertext);
 
         }
 
-        public static string MainEncrypt(string alphabet, string code, string ciphertext)
+        static void MainEncrypt(string alphabet, string code, string ciphertext)
         {
             var codeToArray = code.ToCharArray();
             var alphabetToArray = alphabet.ToCharArray();
@@ -39,13 +38,9 @@ namespace TLAP_3_4_Selftest
                 }
                 else outputText += randomAlphaChar;
 
-                for (int index = 0; index < characters.Length; index++)
-                {
-                    outputText += RandomChar(characters[index], alphabet, code);
-                }
+            }
+          
 
-            }     
-            return outputText;
             Console.WriteLine(outputText);
 
         }
